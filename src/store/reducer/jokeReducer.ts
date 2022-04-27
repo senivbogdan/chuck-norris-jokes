@@ -1,4 +1,4 @@
-import {JokesAction, JokesActionTypes, JokesState} from "../../types/todo";
+import {JokesAction, JokesActionTypes, JokesState} from "../../types/types";
 
 
 const initialState: JokesState = {

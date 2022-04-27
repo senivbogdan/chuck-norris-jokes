@@ -8,7 +8,7 @@ export const HeaderDiv = styled.div`
 `
 
 export const Chuckdiv = styled.div`
-    width: 55%;
+    width: 56%;
     display: flex;
     justify-content: space-between;
 `

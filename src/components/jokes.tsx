@@ -1,7 +1,10 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import styled from 'styled-components';
-import { useDispatch } from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import { fetchJokes } from "../store/action-creator/jokes";
+import {useActions} from "../hooks/useActions";
+import {Chuckdiv, ChuckH1, HeaderDiv, MoreJokesButton} from "./header";
+import {store} from "../store";
 
 export const ArticleDiv = styled.div`
   display: flex;
@@ -19,19 +22,43 @@ export const JokesContainerDiv = styled.div`
   margin: 16px;
   border-radius: 8px;
   background: red;
+  
 `
 
 const Jokes: React.FC = () => {
-    const dispatch = useDispatch()
+    const [jokesValue, setJokesValue] = useState<any>([])
+    const {fetchJokes} = useActions()
+    const jokes = useSelector((state:any) => state.jokes)
 
     useEffect(() => {
-        dispatch(fetchJokes())
+        fetchJokes()
     }, [])
 
+
+    const getJokes = () => {
+        fetchJokes()
+        jokesValue.push(JSON.parse(jokes.joke))
+
+    }
+
+     store.subscribe(() => {
+        localStorage.setItem("jokes", JSON.stringify(store.getState()))
+    })
+    console.log(store.getState())
+
+    // console.log(jokesValue)
     return (
         <>
+            <HeaderDiv>
+                <Chuckdiv>
+                    <ChuckH1>Chuck Norris jokes</ChuckH1>
+                    <MoreJokesButton onClick={getJokes}>MORE</MoreJokesButton>
+                </Chuckdiv>
+            </HeaderDiv>
             <ArticleDiv>
-                <JokesContainerDiv>Lorem Ipsum - это текст-"рыба", часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной "рыбой" для текстов на латинице с начала XVI века. В то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem</JokesContainerDiv>
+                {jokesValue?.map((item:any) => {
+                    return <JokesContainerDiv key={item.id}>{item.value}</JokesContainerDiv>
+                })}
             </ArticleDiv>
         </>
     );
