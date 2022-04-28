@@ -10,7 +10,7 @@ export const fetchJokes = () => {
            const response = await axios.get("https://api.chucknorris.io/jokes/random")
            dispatch({
                type: JokesActionTypes.SET_JOKES_SUCCESS,
-               payload: response.data
+               payload: JSON.parse(response.data)
            })
        } catch (e) {
            dispatch({

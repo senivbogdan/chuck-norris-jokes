@@ -5,6 +5,7 @@ import { fetchJokes } from "../store/action-creator/jokes";
 import {useActions} from "../hooks/useActions";
 import {Chuckdiv, ChuckH1, HeaderDiv, MoreJokesButton} from "./header";
 import {store} from "../store";
+import { addJokes } from "../store/action-creator/allJoke";
 
 export const ArticleDiv = styled.div`
   display: flex;
@@ -21,32 +22,32 @@ export const JokesContainerDiv = styled.div`
   width: 240px;
   margin: 16px;
   border-radius: 8px;
-  background: red;
-  
+  color: white;
+  background: #ee7b7b;
+
 `
 
 const Jokes: React.FC = () => {
-    const [jokesValue, setJokesValue] = useState<any>([])
     const {fetchJokes} = useActions()
-    const jokes = useSelector((state:any) => state.jokes)
+    const dispatch = useDispatch()
+    const allJokes = useSelector((state:any) => state.allJokes.allJokes)
+    const {joke, loading} = useSelector((state:any) => state.jokes)
 
-    useEffect(() => {
-        fetchJokes()
-    }, [])
-
-
-    const getJokes = () => {
-        fetchJokes()
-        jokesValue.push(JSON.parse(jokes.joke))
-
+    const getJokes = async () => {
+        await fetchJokes()
     }
 
-     store.subscribe(() => {
-        localStorage.setItem("jokes", JSON.stringify(store.getState()))
-    })
-    console.log(store.getState())
+    useEffect(() => {
+        if (!joke || joke?.id == allJokes[allJokes.length - 1]?.id) return
+        dispatch(addJokes(joke))
+    }, [joke])
 
-    // console.log(jokesValue)
+     store.subscribe(() => {
+        localStorage.setItem("allJokes", JSON.stringify(allJokes))
+    })
+
+    console.log(allJokes, joke)
+
     return (
         <>
             <HeaderDiv>
@@ -56,10 +57,11 @@ const Jokes: React.FC = () => {
                 </Chuckdiv>
             </HeaderDiv>
             <ArticleDiv>
-                {jokesValue?.map((item:any) => {
+                {allJokes.map((item:any) => {
                     return <JokesContainerDiv key={item.id}>{item.value}</JokesContainerDiv>
                 })}
             </ArticleDiv>
+            { loading && <span>Loading...</span>}
         </>
     );
 };
