@@ -1,5 +1,5 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
 export const HeaderDiv = styled.div`
   display: flex;
@@ -15,7 +15,8 @@ export const Chuckdiv = styled.div`
 `
 
 export const ChuckH1 = styled.h2`
-    
+    display: flex;
+  align-items: center;
 `
 
 export const MoreJokesButton = styled.button`

@@ -1,4 +1,3 @@
-
 export interface JokesState {
     joke: null | object,
     loading: boolean

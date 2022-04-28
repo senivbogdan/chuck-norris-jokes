@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from 'react';
-import styled from 'styled-components';
+import React, {useEffect} from "react";
+import styled from "styled-components";
 import {useDispatch, useSelector} from "react-redux";
 import { fetchJokes } from "../store/action-creator/jokes";
 import {useActions} from "../hooks/useActions";
