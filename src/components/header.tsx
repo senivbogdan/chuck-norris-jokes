@@ -3,8 +3,9 @@ import styled from 'styled-components';
 
 export const HeaderDiv = styled.div`
   display: flex;
-  background: greenyellow;
+  background: linear-gradient(90deg, #29323C 0%, #487aad 100%);
   justify-content: flex-end;
+  color: #e7c1c1;
 `
 
 export const Chuckdiv = styled.div`
@@ -20,16 +21,18 @@ export const ChuckH1 = styled.h2`
 export const MoreJokesButton = styled.button`
   margin: 10px 20px 10px 10px;
   padding: 15px;
-  background: antiquewhite;
-  border: 1px solid #dec1a2;
+  background: linear-gradient(90deg, #617183 0%, #487aad 100%);
+  border: 1px solid #29323C;
   border-radius: 7px;
   font-size: 16px;
-
+  color: #e7c1c1;
   :active {
     outline: none;
-    border: 1px solid #e0a467;
-    background: #c49663;
+    background: linear-gradient(90deg, #29323C 0%, #112e4b 100%);
+    border: 1px solid #29323C;
+    color: white;
   }
+
   :focus {
     outline: none;
   }

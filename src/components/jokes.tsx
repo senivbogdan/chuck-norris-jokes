@@ -7,6 +7,11 @@ import {Chuckdiv, ChuckH1, HeaderDiv, MoreJokesButton} from "./header";
 import {store} from "../store";
 import { addJokes } from "../store/action-creator/allJoke";
 
+export const BodyDiv = styled.div`
+  background: linear-gradient(90deg, #29323C 0%, #485563 100%);
+  height: 100%;
+`
+
 export const ArticleDiv = styled.div`
   display: flex;
   flex-direction: column;
@@ -17,7 +22,7 @@ export const ArticleDiv = styled.div`
 export const JokesContainerDiv = styled.div`
   padding: 12px 16px;
   font-family: Roboto;
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.25rem;
   width: 240px;
   margin: 16px;
@@ -46,10 +51,8 @@ const Jokes: React.FC = () => {
         localStorage.setItem("allJokes", JSON.stringify(allJokes))
     })
 
-    console.log(allJokes, joke)
-
     return (
-        <>
+        <BodyDiv>
             <HeaderDiv>
                 <Chuckdiv>
                     <ChuckH1>Chuck Norris jokes</ChuckH1>
@@ -62,7 +65,7 @@ const Jokes: React.FC = () => {
                 })}
             </ArticleDiv>
             { loading && <span>Loading...</span>}
-        </>
+        </BodyDiv>
     );
 };
 
