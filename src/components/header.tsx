@@ -9,13 +9,13 @@ export const HeaderDiv = styled.div`
 `
 
 export const Chuckdiv = styled.div`
-    width: 56%;
-    display: flex;
-    justify-content: space-between;
+  width: 56%;
+  display: flex;
+  justify-content: space-between;
 `
 
 export const ChuckH1 = styled.h2`
-    display: flex;
+  display: flex;
   align-items: center;
 `
 
