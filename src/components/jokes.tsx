@@ -26,10 +26,22 @@ export const JokesContainerDiv = styled.div`
   line-height: 1.25rem;
   width: 240px;
   margin: 16px;
-  border-radius: 8px;
+  border-radius: 8px 8px 8px 0;
   color: white;
   background: #ee7b7b;
+`
 
+export const JokesImg = styled.img`
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  margin:  0  0 16px 0
+`
+
+export const WrapperDiv = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
 `
 
 const Jokes: React.FC = () => {
@@ -61,7 +73,12 @@ const Jokes: React.FC = () => {
             </HeaderDiv>
             <ArticleDiv>
                 {allJokes.map((item:any) => {
-                    return <JokesContainerDiv key={item.id}>{item.value}</JokesContainerDiv>
+                    return <WrapperDiv>
+                        <JokesImg src="http://www.libertyclick.org/wp-content/uploads/2015/03/Chuck-Norris.jpg" alt=""/>
+                        <JokesContainerDiv key={item.id}>
+                        {item.value}
+                    </JokesContainerDiv></WrapperDiv>
+
                 })}
             </ArticleDiv>
             { loading && <span>Loading...</span>}
