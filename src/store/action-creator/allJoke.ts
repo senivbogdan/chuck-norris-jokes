@@ -1,8 +1,6 @@
-import {AllJokesActionTypes} from "../../types/types";
+import { AllJokesActionTypes } from '../../types/types';
 
-export const addJokes = (joke:any) => {
-    return {
-        type: AllJokesActionTypes.SET_ALL_JOKES,
-        payload: joke
-    }
-}
+export const addJokes = (joke:any) => ({
+  type: AllJokesActionTypes.SET_ALL_JOKES,
+  payload: joke,
+});
