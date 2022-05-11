@@ -1,23 +1,22 @@
-import React, {useEffect} from "react";
-import styled from "styled-components";
-import {useDispatch, useSelector} from "react-redux";
-import { fetchJokes } from "../store/action-creator/jokes";
-import {useActions} from "../hooks/useActions";
-import {Chuckdiv, ChuckH1, HeaderDiv, MoreJokesButton} from "./header";
-import {store} from "../store";
-import { addJokes } from "../store/action-creator/allJoke";
+import React, {useEffect} from 'react';
+import styled from 'styled-components';
+import {useDispatch, useSelector} from 'react-redux';
+import {useActions} from '../hooks/useActions';
+import {Chuckdiv, ChuckH1, HeaderDiv, MoreJokesButton,} from './header';
+import {store} from '../store';
+import {addJokes} from '../store/action-creator/allJoke';
 
 export const BodyDiv = styled.div`
   background: linear-gradient(90deg, #29323C 0%, #485563 100%);
   height: 100%;
-`
+`;
 
 export const ArticleDiv = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-`
+`;
 
 export const JokesContainerDiv = styled.div`
   padding: 12px 16px;
@@ -29,39 +28,39 @@ export const JokesContainerDiv = styled.div`
   border-radius: 8px 8px 8px 0;
   color: white;
   background: #ee7b7b;
-`
+`;
 
 export const JokesImg = styled.img`
   height: 50px;
   width: 50px;
   border-radius: 50%;
-  margin:  0  0 16px 0
-`
+  margin: 0 0 16px 0
+`;
 
 export const WrapperDiv = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-`
+`;
 
-const Jokes: React.FC = () => {
-    const {fetchJokes} = useActions()
-    const dispatch = useDispatch()
-    const allJokes = useSelector((state:any) => state.allJokes.allJokes)
-    const {joke, loading} = useSelector((state:any) => state.jokes)
+const Jokes = () => {
+    const {fetchJokes} = useActions();
+    const dispatch = useDispatch();
+    const allJokes = useSelector((state: any) => state.allJokes.allJokes);
+    const {joke, loading} = useSelector((state: any) => state.jokes);
 
     const getJokes = async () => {
-        await fetchJokes()
-    }
+        await fetchJokes();
+    };
 
     useEffect(() => {
-        if (!joke || joke?.id == allJokes[allJokes.length - 1]?.id) return
-        dispatch(addJokes(joke))
-    }, [joke])
+        if (!joke || joke?.id === allJokes[allJokes.length - 1]?.id) return;
+        dispatch(addJokes(joke));
+    }, [joke]);
 
-     store.subscribe(() => {
-        localStorage.setItem("allJokes", JSON.stringify(allJokes))
-    })
+    store.subscribe(() => {
+        localStorage.setItem('allJokes', JSON.stringify(allJokes));
+    });
 
     return (
         <BodyDiv>
@@ -72,16 +71,16 @@ const Jokes: React.FC = () => {
                 </Chuckdiv>
             </HeaderDiv>
             <ArticleDiv>
-                {allJokes.map((item:any) => {
-                    return <WrapperDiv>
+                {allJokes.map((item: any) => (
+                    <WrapperDiv>
                         <JokesImg src="http://www.libertyclick.org/wp-content/uploads/2015/03/Chuck-Norris.jpg" alt=""/>
                         <JokesContainerDiv key={item.id}>
-                        {item.value}
-                    </JokesContainerDiv></WrapperDiv>
-
-                })}
+                            {item.value}
+                        </JokesContainerDiv>
+                    </WrapperDiv>
+                ))}
             </ArticleDiv>
-            { loading && <span>Loading...</span>}
+            {loading && <span>Loading...</span>}
         </BodyDiv>
     );
 };

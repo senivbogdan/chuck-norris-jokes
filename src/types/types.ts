@@ -8,14 +8,14 @@ export interface AllJokes {
 }
 
 export enum JokesActionTypes {
-    SET_JOKES= "SET_JOKES",
-    SET_JOKES_SUCCESS = "SET_JOKES_SUCCESS",
-    SET_JOKES_ERROR = "SET_JOKES_ERROR"
+    SET_JOKES= 'SET_JOKES',
+    SET_JOKES_SUCCESS = 'SET_JOKES_SUCCESS',
+    SET_JOKES_ERROR = 'SET_JOKES_ERROR'
 }
 
 export enum AllJokesActionTypes {
-    SET_ALL_JOKES = "SET_ALL_JOKES",
-    ADD_NEW_JOKES = "ADD_NEW_JOKES"
+    SET_ALL_JOKES = 'SET_ALL_JOKES',
+    ADD_NEW_JOKES = 'ADD_NEW_JOKES'
 }
 
 interface FetchJokesAction {
@@ -46,7 +46,6 @@ export type JokesAction =
     FetchJokesAction
     | FetchJokesSuccessAction
     | FetchJokesErrorAction
-
 
 export type AllJokesActionType =
     AllJokesAction
